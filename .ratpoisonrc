@@ -1,0 +1,58 @@
+# Configuração Ultra-Simples - 3 workspaces
+
+# Aplicações de inicialização
+exec nitrogen --restore &
+exec picom &
+exec polybar -r main &
+exec sh -c "sleep 5; (conky -c $HOME/.config/conky/conky.conf || conky) &"
+# Padding padrão 0 (janelas em tela cheia real)
+set padding 24 0 0 0
+
+set border 0
+
+# rpws: inicializa 3 áreas
+exec rpws init 3 -k
+
+# Super + números para trocar (SEM prefixo)
+definekey top Mod4-1 exec rpws 1
+definekey top Mod4-2 exec rpws 2
+definekey top Mod4-3 exec rpws 3
+# Numpad (KP) também
+definekey top Mod4-KP_1 exec rpws 1
+definekey top Mod4-KP_2 exec rpws 2
+definekey top Mod4-KP_3 exec rpws 3
+
+# Prefixo + Tab para próximo workspace
+bind Tab exec rpws next
+bind S-Tab exec rpws prev
+
+# Prefixo + números também funcionam
+bind 1 exec rpws 1
+bind 2 exec rpws 2
+bind 3 exec rpws 3
+# Numpad com prefixo
+bind KP_1 exec rpws 1
+bind KP_2 exec rpws 2
+bind KP_3 exec rpws 3
+
+# Thunar com tecla F no root
+definekey root F exec thunar
+
+# Atalhos personalizados
+bind t exec thunar
+unbind f
+bind f exec /usr/bin/thunar
+unbind w
+bind w exec /usr/bin/google-chrome
+unbind n
+bind n exec /usr/bin/nitrogen
+
+# Terminal com Super+Enter
+definekey top Mod4-Return exec lxterminal
+# Controles de volume
+definekey top F11 exec amixer set Master 5%-
+definekey top F12 exec amixer set Master 5%+
+definekey top F10 exec amixer set Master toggle
+
+# Barra minimalista (lemonbar)
+set padding 0 0 0 0
